@@ -1,0 +1,27 @@
+<head>
+    <title>ToDo Manager</title>
+</head>
+<body>
+    <h1>My To Dos</h1>
+    <ul></ul>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        //new todo received
+        ipcRenderer.on('todo:add', (event, todo)=>{
+            debugger
+             const li=document.createElement('li');
+             const text=document.createTextNode(todo);
+
+             li.appendChild(text);
+             document.querySelector('ul').appendChild(li);
+        });
+
+        //todo list has to be cleared
+        ipcRenderer.on('todo:clear', ()=>{
+            document.querySelector('ul').innerHTML='';
+        });
+
+    </script>
+</body>
